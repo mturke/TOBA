@@ -17,42 +17,37 @@ public class NewCustomerServlet extends HttpServlet{
             HttpServletResponse response)  
             throws ServletException, IOException 
     { 
-        String url = "/Success.html";
+        String url = "/Success.jsp";
         
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "join";
-        }
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String city = request.getParameter("city");
+        String state = request.getParameter("state");
+        String zipcode = request.getParameter("zipcode");
+        String email = request.getParameter("email");
+        String userName = lastName + zipcode;
+        String passWord = "welcome1";
+
         
-        if (action.equals("join")) {
-            url = "/Success.html";
-        }
+        String message;
+        HttpSession session = request.getSession();
         
-        else if (action.equals("add")) {
-            String firstName = request.getParameter("firstName");
-            String lastName = request.getParameter("lastName");
-            String phone = request.getParameter("phone");
-            String address = request.getParameter("address");
-            String city = request.getParameter("city");
-            String state = request.getParameter("state");
-            String zipcode = request.getParameter("zipcode");
-            String email = request.getParameter("email");
-            
-            
-            
-            String message;
-            if (firstName == null || lastName == null || phone == null ||address == null || city == null || state == null || zipcode == null || email == null ||
-                firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || zipcode.isEmpty() || email.isEmpty()) {
-                message = "Please fill out all data fields.";
-                response.sendRedirect("New_customer.html");    
-            }
-                
-            else {
-                message ="";
-                response.sendRedirect("Success.html");
-            }
-            request.setAttribute("message", message);
+        if (firstName == null || lastName == null || phone == null ||address == null || city == null || state == null || zipcode == null || email == null || 
+            firstName.isEmpty() || lastName.isEmpty() || phone.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || zipcode.isEmpty() || email.isEmpty()) {
+            message = "Please fill out all data fields.";
+            response.sendRedirect("New_customer.jsp");    
         }
+
+        else {
+            User user = new User(firstName, lastName, phone, address, city, state, zipcode, email, userName, passWord);        
+            session.setAttribute("user", user);
+            message ="";
+            url = "/Success.jsp";
+        }
+        request.setAttribute("message", message);
+
         getServletContext()
             .getRequestDispatcher(url)
             .forward(request, response);

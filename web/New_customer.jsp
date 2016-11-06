@@ -1,9 +1,11 @@
+<%-- 
+    Document   : New_customer
+    Created on : Nov 2, 2016, 1:02:55 PM
+    Author     : mturke
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>New Customer</title>
@@ -11,13 +13,14 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        
         <nav>
-        <a href="index.html">HOME |</a> 
-        <a href="Login.html">LOGIN |</a> 
-        <a href="New_customer.html">NEW CUSTOMERS |</a> 
-        <a href="Account_activity.html">ACCOUNT ACVITY |</a>
-        <a href="Transaction.html">TRANSACTIONS</a> 
-        </nav>
+        <a href="index.jsp">HOME |</a> 
+        <a href="Login.jsp">LOGIN |</a> 
+        <a href="New_customer.jsp">NEW CUSTOMERS |</a> 
+        <a href="Account_activity.jsp">ACCOUNT ACTIVITY |</a>
+        <a href="Transaction.jsp">TRANSACTIONS</a> 
+    </nav>
         
         <br>
         
@@ -48,8 +51,18 @@ and open the template in the editor.
             <label>Email</label>
             <input type ="text" name="email">
             <br>
+           
             <br>
             <input type="submit" value="Submit">
         </form>
+        
+        
+        
+    <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
+<%
+    GregorianCalendar currentDate = new GregorianCalendar();
+    int currentYear = currentDate.get(Calendar.YEAR);
+    %>
+    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
     </body>
 </html>

@@ -10,8 +10,10 @@ public class User implements Serializable {
     private String address;
     private String state;
     private String city;
-    private String zipcode;
+    private String zipCode;
     private String email;
+    private String userName;
+    private String passWord;
     
     public User() {
         firstName = "";
@@ -20,18 +22,22 @@ public class User implements Serializable {
         address = "";
         state = "";
         city = "";
-        zipcode = "";
+        zipCode = "";
         email = "";
+        userName = "";
+        passWord = "";
     }
-    public User(String firstName,String lastName,String phone,String address,String state,String city,String zipcode,String email){
+    public User(String firstName,String lastName,String phone,String address,String state,String city,String zipcode,String email, String userName, String passWord){
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.address = address;
         this.state = state;
         this.city= city;
-        this.zipcode = zipcode;
+        this.zipCode = zipcode;
         this.email = email;
+        this.userName = userName;
+        this.passWord = passWord;
     }
     
     public String getFirstName(){
@@ -76,12 +82,13 @@ public class User implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
-    public String getZipcode(String zipcode){
-        return firstName;
+    
+    public String getZipCode(){
+        return this.zipCode;
     }
     
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipcode) {
+        this.zipCode = zipcode;
     }
     public String getEmail(){
         return email;
@@ -90,6 +97,19 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getUserName(){
+        return this.userName;
+    }
+    
+    public void setUserName(String userName) {
+        this.userName = userName;
 }
-
+    public String getPassWord(){
+        return passWord;
+    }
+    
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+}
 

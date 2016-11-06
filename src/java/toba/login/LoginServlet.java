@@ -14,6 +14,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import toba.newcustomer.User;
 
 
 public class LoginServlet extends HttpServlet {
@@ -23,21 +24,26 @@ public class LoginServlet extends HttpServlet {
                           HttpServletResponse response)  
                           throws ServletException, IOException {  
   
+            
             String un=request.getParameter("Username");
             String pw=request.getParameter("Password");
 		
-            if(un.equals("jsmith@toba.com") && pw.equals("letmein"))
+            HttpSession session = request.getSession();
+            User user = (User)session.getAttribute("user");
+            String url = "";
+            if (user == null)
+                url = "/New_customer.jsp";
+            else if(un.equals(user.getUserName()) && pw.equals(user.getPassWord()))
             {
-		response.sendRedirect("Account_activity.html");
-		return;
-		
+		url = "/Account_activity.jsp";
             }
             else
-		
             {
-		response.sendRedirect("Login_failure.html");
-		return;
-		}
-   
+		url = "/Login_failure.jsp";
+            }
+            
+            getServletContext()
+            .getRequestDispatcher(url)
+            .forward(request, response);
     }
 }
