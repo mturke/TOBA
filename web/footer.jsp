@@ -4,13 +4,14 @@
     Author     : mturke
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
 <%
     GregorianCalendar currentDate = new GregorianCalendar();
     int currentYear = currentDate.get(Calendar.YEAR);
+    int currentDay = currentDate.get(Calendar.DATE);
+    int currentMonth = currentDate.get(Calendar.MONTH) + 1;
     %>
-    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
+    <p><%= currentMonth %>-<%= currentDay %>-<%= currentYear %> &copy; Copyright  TOBA Banking </p>
     </body>
 </html>

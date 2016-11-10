@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        
+       
         <nav>
         <a href="index.jsp">HOME |</a> 
         <a href="Login.jsp">LOGIN |</a> 
@@ -24,7 +24,7 @@
         
         <br>
         
-        <h1>Welcome to your new customer account set up</h1>
+        <h1>Welcome To Your New Customer Account Set Up</h1>
         
         <form action="New_customer" method ="post">
             <label>First Name:</label>
@@ -57,12 +57,12 @@
         </form>
         
         
+                <br>
+
+                
+                
         
-    <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
-<%
-    GregorianCalendar currentDate = new GregorianCalendar();
-    int currentYear = currentDate.get(Calendar.YEAR);
-    %>
-    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
+        <jsp:include page="footer.jsp" />
+
     </body>
 </html>

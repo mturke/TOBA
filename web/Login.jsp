@@ -5,14 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>TOBA Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
     </head>
+    
     <body>
         
         <nav>
@@ -32,15 +33,18 @@
             <input type ="text" name="Password">
             <input type="submit" value="Login">
         </form>
+
         <br>
         <h4>New customer? Login <a href="New_customer.jsp">here</a></h4>
         <h4>Reset <a href="password_reset.jsp">Password</a></h4>
-             
-    <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
-<%
-    GregorianCalendar currentDate = new GregorianCalendar();
-    int currentYear = currentDate.get(Calendar.YEAR);
-    %>
-    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
+        
+        
+        <br>
+            
+        
+        
+            
+    <jsp:include page="footer.jsp" />
+        
     </body>
 </html>

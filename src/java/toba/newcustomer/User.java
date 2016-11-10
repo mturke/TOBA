@@ -84,7 +84,7 @@ public class User implements Serializable {
     }
     
     public String getZipCode(){
-        return this.zipCode;
+        return zipCode;
     }
     
     public void setZipCode(String zipcode) {
@@ -98,7 +98,7 @@ public class User implements Serializable {
         this.email = email;
     }
     public String getUserName(){
-        return this.userName;
+        return userName;
     }
     
     public void setUserName(String userName) {
@@ -111,5 +111,6 @@ public class User implements Serializable {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
+
 }
 

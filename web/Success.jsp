@@ -3,7 +3,7 @@
     Created on : Nov 2, 2016, 12:21:17 PM
     Author     : mturke
 --%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+       
         <nav>
         <a href="index.jsp">HOME |</a> 
         <a href="Login.jsp">LOGIN |</a> 
@@ -38,13 +39,12 @@
         
         <br>
         <br>
+        
+        
+        
         <br>
         
-        <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
-<%
-    GregorianCalendar currentDate = new GregorianCalendar();
-    int currentYear = currentDate.get(Calendar.YEAR);
-    %>
-    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
+        <jsp:include page="footer.jsp" />
+
     </body>
 </html>

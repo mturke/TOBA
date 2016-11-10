@@ -12,7 +12,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    
+    <body>
+
         <h1>Welcome to TOBA Bankling Online!</h1>
     <br>
     
@@ -24,14 +25,12 @@
         <a href="Account_activity.jsp">ACCOUNT ACTIVITY |</a>
         <a href="Transaction.jsp">TRANSACTIONS</a> 
     </nav>
-        
     <br>
-    
-    <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
-<%
-    GregorianCalendar currentDate = new GregorianCalendar();
-    int currentYear = currentDate.get(Calendar.YEAR);
-    %>
-    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
-    
+    <br>
+    <br>
+    <br>
+
+        <jsp:include page="footer.jsp" />
+
+    </body>    
 </html>

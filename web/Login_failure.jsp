@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        
         <nav>
         <a href="index.jsp">HOME |</a> 
         <a href="Login.jsp">LOGIN |</a> 
@@ -29,11 +30,12 @@
         
         
         
-        <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
-<%
-    GregorianCalendar currentDate = new GregorianCalendar();
-    int currentYear = currentDate.get(Calendar.YEAR);
-    %>
-    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
-    </body>
+                <br>
+
+                
+                
+                
+        <jsp:include page="footer.jsp" />
+
+    </body> 
 </html>

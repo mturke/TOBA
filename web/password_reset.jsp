@@ -12,6 +12,7 @@
         <title>Password Reset</title>
     </head>
     <body>
+        
         <nav>
         <a href="index.jsp">HOME |</a> 
         <a href="Login.jsp">LOGIN |</a> 
@@ -23,18 +24,20 @@
         <h1>Reset your password:</h1>
         <br>
         
-        <form action="login" method ="post">
+        <form action="Account_activity.jsp" method ="post">
             <label>New Password:</label>
-            <input type ="text" name="Password">
+            <input type ="text" name="New Password" value="${user.passWord}">
             <input type="submit" value="Login">
         </form>
         
+            
+            
+                <br>
+
+                
+                
+                
+        <jsp:include page="footer.jsp" />
         
-        <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
-<%
-    GregorianCalendar currentDate = new GregorianCalendar();
-    int currentYear = currentDate.get(Calendar.YEAR);
-    %>
-    <p>&copy; Copyright <%= currentYear %> TOBA Banking </p>
     </body>
 </html>
