@@ -30,23 +30,26 @@ public class PasswordResetServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        
         if(user == null)
         {
             url = "/New_customer.jsp"; 
         }
              
-        String passWord = request.getParameter("passWord");
+        String passWord = request.getParameter("Password");
    
-        if(passWord.isEmpty())
-        {
+        if (passWord.isEmpty()){
+        
             message = "Please reset your password";
             url = "/password_reset.jsp";   
         }
-        
+        else {
+            user.setPassWord(passWord);
+            url="/Account_activity.jsp";
+        }
         
         
         request.setAttribute("message", message);
-
         session.setAttribute("user", user);
         
         getServletContext()
