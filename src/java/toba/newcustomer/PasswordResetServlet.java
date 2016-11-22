@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import toba.data.UserDB;
 
 /**
  *
@@ -48,6 +49,8 @@ public class PasswordResetServlet extends HttpServlet {
             url="/Account_activity.jsp";
         }
         
+        UserDB userdb = new  UserDB();
+        userdb.update(user);
         
         request.setAttribute("message", message);
         session.setAttribute("user", user);

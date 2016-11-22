@@ -2,8 +2,25 @@
 package toba.newcustomer;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence .GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import toba.data.Account;
+import toba.data.AccountDB;
+import toba.transaction.Transaction;
+import toba.transaction.TransactionDB;
 
+
+@Entity
 public class User implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long userId;
     private String firstName;
     private String lastName;
     private String phone;
@@ -12,8 +29,9 @@ public class User implements Serializable {
     private String city;
     private String zipCode;
     private String email;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
+    
     
     public User() {
         firstName = "";
@@ -24,10 +42,10 @@ public class User implements Serializable {
         city = "";
         zipCode = "";
         email = "";
-        userName = "";
-        passWord = "";
+        username = "";
+        password = "";
     }
-    public User(String firstName,String lastName,String phone,String address,String state,String city,String zipcode,String email, String userName, String passWord){
+    public User(String firstName,String lastName,String phone,String address,String state,String city,String zipcode,String email){
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -36,8 +54,17 @@ public class User implements Serializable {
         this.city= city;
         this.zipCode = zipcode;
         this.email = email;
-        this.userName = userName;
-        this.passWord = passWord;
+        this.username = lastName + zipcode;
+        this.password = "welcome1";
+        
+    }
+
+    public Long getUserId(){
+        return userId;
+    }
+    
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
     
     public String getFirstName(){
@@ -98,19 +125,33 @@ public class User implements Serializable {
         this.email = email;
     }
     public String getUserName(){
-        return userName;
+        return username;
     }
     
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
 }
     public String getPassWord(){
-        return passWord;
+        return password;
     }
     
     public void setPassWord(String passWord) {
-        this.passWord = passWord;
+        this.password = passWord;
     }
 
+    public double getCheckingBalance(){
+        Account checking = AccountDB.selectAccount(this, "CHECKING");
+        return checking.getBalance();
+    }
+
+    public double getSavingsBalance(){
+        Account savings = AccountDB.selectAccount(this, "SAVINGS");
+        return savings.getBalance();
+    }
+    
+    public List<Transaction> getTransactions() {
+        List<Transaction> trans = TransactionDB.getTransactions(this);
+        return trans;
+    }
 }
 

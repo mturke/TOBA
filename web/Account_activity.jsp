@@ -1,9 +1,6 @@
-<%-- 
-    Document   : Account_activity
-    Created on : Nov 2, 2016, 12:19:59 PM
-    Author     : mturke
---%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,26 +20,49 @@
         <a href="Account_activity.jsp">ACCOUNT ACTIVITY |</a>
         <a href="Transaction.jsp">TRANSACTIONS</a> 
     </nav>
-        
+        <br>
         <c:choose>
-            <c:when test="${empty sessionScope.user}">
-                <p>Welcome ${user.firstName}</p>
+            <c:when test="${!empty sessionScope.user}">
+                <p>Welcome, ${user.firstName}</p>
+                <h1><u>Account Activity</u></h1>
+
+                <br>
+                
+                <h2>Checking Account: ${user.checkingBalance}</h1>
+                
+                <br>
+                
+                <h2>Savings Account: ${user.savingsBalance}</h1>
+                
+                <br>
             </c:when>
             <c:otherwise>
                 <p></p>
             </c:otherwise>
         </c:choose>
-    
-        <h1>Account Activity</h1>
+                <h1>Transactions:</h1>
+                
+                           
+    <c:forEach var="transactions" items ="${transactions}">
+               <td>${transactions.amt}</td>
+    </c:forEach>
+            
         <br>
-        <h2>Your account summary and activity: </h2>
+       
+        <br>        
+        
         <br>
+
         <br>
+
+        
+        
         <br>
-        <br>
+        <p>Go to your <a href="Transaction.jsp">transactions</a></p>              
+        
+        
         <br>
         
-
     <jsp:include page="footer.jsp" />
 
     </body>

@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package toba.transaction;
 
-/**
- *
- * @author mturke
- */
+
 import java.io.*;
+import java.util.ArrayList;
 import javax.servlet.*;
 import javax.servlet.http.*;
-
+import toba.data.Account;
+import toba.newcustomer.User;
+import toba.data.AccountDB;
 
 public class TransactionServlet extends HttpServlet {
     
@@ -22,15 +18,36 @@ public class TransactionServlet extends HttpServlet {
                           HttpServletResponse response)  
                           throws ServletException, IOException {
         
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        String url = "/Transaction.jsp";
         
-        try {
-            out.println("");            
-        }
-        finally {
-            out.close();
-        }
-    }
+        String From = request.getParameter("From");
+        String To = request.getParameter("To");
+        
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        
+        String Amount = request.getParameter("Amount");
+        
+        Account source = AccountDB.selectAccount(user, From);
+        source.debit(Double.parseDouble(Amount));
+        
+        Account destination = AccountDB.selectAccount(user, To);
+        destination.credit(Double.parseDouble(Amount));
+        
+        AccountDB.update(source);
+        AccountDB.update(destination);
+
+       
+        Transaction trans = new Transaction(source, destination, Double.parseDouble(Amount));
+
 }
+        ArrayList<Transaction>transactions = new ArrayList<>();
+                
+        //Create a TransactionDB
+        //Insert Transaction in TransactionDB
+        //loop thru list in account_activity
+    }
+    
+    
+
    

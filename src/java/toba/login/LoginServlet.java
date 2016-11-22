@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package toba.login;
 
-/**
- *
- * @author mturke
- */
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import toba.data.UserDB;
 import toba.newcustomer.User;
 
 
@@ -28,14 +22,16 @@ public class LoginServlet extends HttpServlet {
             String un=request.getParameter("Username");
             String pw=request.getParameter("Password");
 		
-            HttpSession session = request.getSession();
-            User user = (User)session.getAttribute("user");
+            User user = UserDB.get(un);
+            
             String url = "";
+            
             if (user == null)
                 url = "/New_customer.jsp";
             else if(un.equals(user.getUserName()) && pw.equals(user.getPassWord()))
             {
 		url = "/Account_activity.jsp";
+                request.getSession().setAttribute("user", user);
             }
             else
             {

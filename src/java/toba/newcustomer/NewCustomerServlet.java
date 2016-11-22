@@ -6,6 +6,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import toba.data.Account;
+import toba.data.AccountDB;
+import toba.data.UserDB;
 
 
 public class NewCustomerServlet extends HttpServlet{
@@ -30,8 +33,8 @@ public class NewCustomerServlet extends HttpServlet{
         String userName = lastName + zipcode;
         String passWord = "welcome1";
 
-        
-        String message;
+        User user = new User();
+        String message = "";
         HttpSession session = request.getSession();
         
         if (firstName == null || lastName == null || phone == null ||address == null || city == null || state == null || zipcode == null || email == null || 
@@ -41,11 +44,20 @@ public class NewCustomerServlet extends HttpServlet{
         }
 
         else {
-            User user = new User(firstName, lastName, phone, address, city, state, zipcode, email, userName, passWord);        
-            session.setAttribute("user", user);
-            message ="";
+            user = new User(firstName, lastName, phone, address, city, state, zipcode, email);        
+            UserDB.insert(user);
+
+            Account checking = new Account("CHECKING", 0.00, user);
+            Account savings = new Account("SAVINGS", 25.00, user);
+        
+            AccountDB.insert(checking);
+            AccountDB.insert(savings);
+         
+        
+            request.getSession().setAttribute("user", user);
             url = "/Success.jsp";
         }
+                
         request.setAttribute("message", message);
 
         getServletContext()
