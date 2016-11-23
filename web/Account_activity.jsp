@@ -43,8 +43,8 @@
                 <h1>Transactions:</h1>
                 
                            
-    <c:forEach var="transactions" items ="${transactions}">
-               <td>${transactions.amt}</td>
+    <c:forEach var="transaction" items ="${transactions}">
+               <p>${transaction.amt}</p>
     </c:forEach>
             
         <br>
