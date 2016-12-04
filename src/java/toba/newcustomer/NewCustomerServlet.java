@@ -2,6 +2,7 @@ package toba.newcustomer;
 
 
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,14 @@ import toba.data.Account;
 import toba.data.AccountDB;
 import toba.data.UserDB;
 
+import toba.data.PasswordUtil;
+
+import java.security.SecureRandom;
+import java.util.Random;
+import java.util.Base64;
+import toba.data.PasswordUtil;
+import static toba.data.PasswordUtil.getSalt;
+import static toba.data.PasswordUtil.hashPassword;
 
 public class NewCustomerServlet extends HttpServlet{
     
@@ -63,6 +72,19 @@ public class NewCustomerServlet extends HttpServlet{
         getServletContext()
             .getRequestDispatcher(url)
             .forward(request, response);
+    }
+    public static String getSalt(){
+        Random r = new SecureRandom();
+        byte[] saltBytes = new byte[32];
+        r.nextBytes(saltBytes);
+        return Base64.getEncoder().encodeToString(saltBytes);
+    }
+    
+    public static String hashAndSaltPassword(String passWord)
+            throws NoSuchAlgorithmException {
+        String salt = getSalt();
+       return hashPassword(passWord + salt);
+
     }
 }
 

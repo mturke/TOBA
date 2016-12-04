@@ -41,10 +41,9 @@
             </c:otherwise>
         </c:choose>
                 <h1>Transactions:</h1>
-                
                            
     <c:forEach var="transaction" items ="${transactions}">
-               <p>${transaction.amt}</p>
+               <td>${transaction.amt}</td>               
     </c:forEach>
             
         <br>
